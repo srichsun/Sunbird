@@ -23,3 +23,7 @@ You might need to a dd jQuery to the environment. $ `yarn add jquery`
 * example data creation
 
 `rake db:seed`
+
+* run test cases
+
+rspec spec
