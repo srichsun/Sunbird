@@ -1,20 +1,14 @@
-<p id="notice"><%= notice %></p>
-
-
 <main>
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Sunbird Recipes</h1>
-        <p class="lead text-muted">Any recipe you want, any recipe you can find.</p>
+        <p class="lead text-light">Any recipe you want, any recipe you can find.</p>
         <p>
           <%= form_tag search_recipes_path, method: :get do %>
               <%= text_field_tag :search_term, params[:search_term], placeholder: "keyword of the recipe", required: 'required', class: "btn btn-light my-2" %>
-              <%= submit_tag "Search", name: nil, class: "btn btn-secondary my-2" %>
-          <% end %>
-
-          <%= form_tag search_recipes_path, method: :get do %>
-            <%= submit_tag "reset", name: nil %>
+              <%= submit_tag "Search", name: nil, class: "btn btn-info my-2" %>
+              <%= button_tag 'Reset', type: 'reset', class: "btn btn-dark my-2" %>
           <% end %>
         </p>
       </div>
@@ -22,25 +16,17 @@
   </section>
 </main>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= form_tag new_recipe_path, method: :get do %>
+  <%= submit_tag 'Create Custom Recipe', name: nil, class: "btn btn-dark my-2" %>
+<% end %>
 
+<table class="table table-light table-striped" >
   <tbody>
     <% @recipes.each do |recipe| %>
       <tr>
-        <td><%= link_to recipe.title, recipe %></td>
+        <td><%= link_to recipe.title, recipe, class: "link-info text-decoration-none" %></td>
         <td><%= recipe.content %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Recipe', new_recipe_path %>
