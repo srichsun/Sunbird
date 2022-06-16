@@ -6,7 +6,7 @@
 
 * Rails version
 
-`Rails 6.1.6
+`Rails 6.1.6`
 
 * node version
 
@@ -26,4 +26,4 @@ You might need to a dd jQuery to the environment. $ `yarn add jquery`
 
 * run test cases
 
-rspec spec
+`rspec spec`
