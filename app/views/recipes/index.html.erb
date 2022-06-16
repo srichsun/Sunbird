@@ -1,0 +1,58 @@
+<main>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Sunbird Recipes</h1>
+        <p class="lead text-light">Any recipe you want, any recipe you can find.</p>
+        <p>
+          <%= form_tag search_recipes_path, method: :get do %>
+              <%= text_field_tag :search_term, params[:search_term], placeholder: "keyword of the recipe", required: 'required', class: "btn btn-light my-2" %>
+              <%= submit_tag "Search", name: nil, class: "btn btn-info my-2" %>
+              <%= button_tag 'Reset', type: "reset", class: "btn btn-dark my-2" %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%= form_tag new_recipe_path, method: :get do %>
+  <%= submit_tag 'Create Custom Recipe', name: nil, class: "btn btn-dark my-2" %>
+<% end %>
+
+<%= link_to "Get free tacos!", "#", class: "btn btn-primary", id: "get_free_tacos" %>
+<div id="refreshing_part" class="bg-danger"><h1></h1></div>
+
+<table class="table table-light table-striped" >
+  <tbody>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td><%= link_to recipe.title, recipe, class: "link-info text-decoration-none" %></td>
+        <td><%= recipe.content %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $(function(){
+    $('#get_free_tacos').click(function(e){
+      e.preventDefault();
+
+      var data = {}
+      var request = $.ajax({
+          url: '/recipes/get_free_tacos',
+          dataType: 'html',
+          data: data,
+          method: "POST"
+      })
+
+      request.done(function(data) {
+          console.log(data);
+          $('#refreshing_part').html(data)
+      }).fail(function(xhr, status, err) {
+          console.log("failed");
+      })
+    });
+  });
+</script>
