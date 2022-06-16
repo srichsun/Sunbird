@@ -36,6 +36,7 @@ group :development, :test do
   gem 'bullet', '~> 6.1.4'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker', '~> 2.21'
+  gem 'factory_bot_rails'
   gem 'pry', '~> 0.13.1'
 end
 
@@ -53,6 +54,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
+  gem 'rails-controller-testing'
   gem 'rspec'
   gem 'rspec-rails', '~> 5.0.1'
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
