@@ -26,4 +26,24 @@ RSpec.describe RecipesController do
       expect(response).to render_template("show")
     end
   end
+
+  describe "POST create" do
+    it "create a new recipe" do
+      recipe = FactoryBot.build(:recipe)
+
+      expect do
+        post :create, params: { :recipe => FactoryBot.attributes_for(:recipe) }
+      end.to change{ Recipe.count }.by(1)
+    end
+
+    it "redirects to recipes_path" do
+      recipe = FactoryBot.build(:recipe)
+
+      expect do
+        post :create, params: { :recipe => FactoryBot.attributes_for(:recipe) }
+      end
+
+      expect(response).to be_successful
+    end
+  end
 end
