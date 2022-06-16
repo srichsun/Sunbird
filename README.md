@@ -19,6 +19,7 @@ Things you may want to cover:
 
 * Database creation
 
+`rake db:seed`
 * Database initialization
 
 * How to run the test suite
