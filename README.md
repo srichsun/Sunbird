@@ -13,7 +13,17 @@ Things you may want to cover:
 
 `Rails 6.1.6
 
+* node version
+
+`v16.15.1`
+
+* yarn version
+
+`1.22.19`
+
 * System dependencies
+
+You might need to a dd jQuery to the environment. $ `yarn add jquery`
 
 * Configuration
 
