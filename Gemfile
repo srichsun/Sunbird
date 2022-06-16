@@ -33,6 +33,7 @@ group :development, :test do
   gem 'awesome_print', '~> 1.9.2'
   gem 'bullet', '~> 6.1.4'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'faker', '~> 2.21'
   gem 'pry', '~> 0.13.1'
 end
 
@@ -50,7 +51,6 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
-  gem 'faker'
   gem 'rspec'
   gem 'rspec-rails', '~> 5.0.1'
   gem 'selenium-webdriver', '>= 4.0.0.rc1'

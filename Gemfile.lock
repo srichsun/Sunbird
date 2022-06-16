@@ -245,7 +245,7 @@ DEPENDENCIES
   bullet (~> 6.1.4)
   byebug
   capybara (>= 3.26)
-  faker
+  faker (~> 2.21)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pry (~> 0.13.1)
