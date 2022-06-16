@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
 
     if @recipe.save
-      redirect_to recipe_url(@recipe), notice: "Recipe was successfully created." 
+      redirect_to recipe_url(@recipe), notice: "Recipe was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,6 +32,10 @@ class RecipesController < ApplicationController
       @recipes = Recipe.where("lower(title) LIKE ? OR lower(content) LIKE ?", "%#{search_term}%", "%#{search_term}%")
       render :index
     end
+  end
+
+  def get_free_tacos
+    @num = rand(10) + 2
   end
 
   private

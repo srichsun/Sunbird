@@ -20,6 +20,9 @@
   <%= submit_tag 'Create Custom Recipe', name: nil, class: "btn btn-dark my-2" %>
 <% end %>
 
+<%= link_to "Get free tacos!", "#", class: "btn btn-primary", id: "get_free_tacos" %>
+<div id="refreshing_part"><h1></h1></div>
+
 <table class="table table-light table-striped" >
   <tbody>
     <% @recipes.each do |recipe| %>
@@ -30,3 +33,26 @@
     <% end %>
   </tbody>
 </table>
+
+<script type="text/javascript">
+  $(function(){
+    $('#get_free_tacos').click(function(e){
+      e.preventDefault();
+
+      var data = {}
+      var request = $.ajax({
+          url: '/recipes/get_free_tacos',
+          dataType: 'html',
+          data: data,
+          method: "POST"
+      })
+
+      request.done(function(data) {
+          console.log(data);
+          $('#refreshing_part').html(data)
+      }).fail(function(xhr, status, err) {
+          console.log("failed");
+      })
+    });
+  });
+</script>
