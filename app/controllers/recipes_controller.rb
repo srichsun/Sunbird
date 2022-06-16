@@ -1,28 +1,36 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[ show ]
 
-  # GET /recipes
   def index
     @recipes = Recipe.all
   end
 
-  # GET /recipes/1
   def show
   end
 
-  # GET /recipes/new
   def new
     @recipe = Recipe.new
   end
 
-  # POST /recipes
   def create
     @recipe = Recipe.new(recipe_params)
 
     if @recipe.save
-      format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully created." }
+      redirect_to recipe_url(@recipe), notice: "Recipe was successfully created." 
     else
-      format.html { render :new, status: :unprocessable_entity }
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def search
+    search_term = params[:search_term]
+
+    if search_term.nil?
+      redirect_to recipes_path
+    else
+      search_term = search_term.downcase
+      @recipes = Recipe.where("lower(title) LIKE ? OR lower(content) LIKE ?", "%#{search_term}%", "%#{search_term}%")
+      render :index
     end
   end
 

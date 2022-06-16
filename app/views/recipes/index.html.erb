@@ -1,6 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Recipes</h1>
+
+<main>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Sunbird Recipes</h1>
+        <p class="lead text-muted">Any recipe you want, any recipe you can find.</p>
+        <p>
+          <%= form_tag search_recipes_path, method: :get do %>
+              <%= text_field_tag :search_term, params[:search_term], placeholder: "keyword of the recipe", required: 'required', class: "btn btn-light my-2" %>
+              <%= submit_tag "Search", name: nil, class: "btn btn-secondary my-2" %>
+          <% end %>
+
+          <%= form_tag search_recipes_path, method: :get do %>
+            <%= submit_tag "reset", name: nil %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
 
 <table>
   <thead>
@@ -14,9 +34,8 @@
   <tbody>
     <% @recipes.each do |recipe| %>
       <tr>
-        <td><%= recipe.title %></td>
+        <td><%= link_to recipe.title, recipe %></td>
         <td><%= recipe.content %></td>
-        <td><%= link_to 'Show', recipe %></td>
       </tr>
     <% end %>
   </tbody>
